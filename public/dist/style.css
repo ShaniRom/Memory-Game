@@ -3,6 +3,10 @@ body {
   font-family: "Harry Potter", sans-serif;
   margin: 0px;
   padding: 0px;
+  background-image: url("https://media.sketchfab.com/models/bde62298ac8640588d5a2928b8e113dc/thumbnails/cea9e18e2bc84efdab1c881a6e6d82c6/a778dd7953b34ab9b9bc92dc2a499598.jpeg");
+  background-size: cover;
+  height: 100%;
+  width: 100%;
 }
 
 .openingPage {
@@ -45,11 +49,7 @@ body {
   box-shadow: 5px 1px 40px 30px rgba(116, 79, 37, 0.849);
 }
 
-#root {
-  background-image: url("https://media.sketchfab.com/models/bde62298ac8640588d5a2928b8e113dc/thumbnails/cea9e18e2bc84efdab1c881a6e6d82c6/a778dd7953b34ab9b9bc92dc2a499598.jpeg");
-  background-size: cover;
-  height: 100%;
-  width: 100%;
+.gameBoard {
   justify-content: center;
   display: grid;
   grid-template-columns: repeat(4, 250px);
@@ -59,7 +59,7 @@ body {
   perspective: 1000px;
   /* perspective gives 3D effect */
 }
-#root .memory-card img {
+.gameBoard .card img {
   width: 180px;
   height: 180px;
 }

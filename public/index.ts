@@ -5,56 +5,66 @@ function appInit() {
 //needed to load on when the page opens
 
 async function getCards() {
-  const { data } = await axios.get("/new-game");
-  console.log(data);
-  renderGame(data);
+  try{
+    const { data } = await axios.get("/new-game");
+   
+    renderGame(data);
+  }catch(error){
+console.error(error)
+  }
+ 
 }
+
+
 
 function renderGame(cards) {
   const root = document.querySelector("#root");
+  try{
   if (Array.isArray(cards)) {
-    let html = "";
+    console.log(cards)
+    let html = '<div class="gameBoard">'
     cards.forEach((card) => {
-      html += ` <div class="memory-card"  onclick='handleFlip()'  >
-                     <img src=${card.imgUrl} alt="Character" class="front-face" > 
-                     <img src="img/BackCard.png" alt="Memory Card" class="back-face"> 
-                      
+      html += ` <div class="card"  onclick="handleFlip(event)" id="${card.id}">
+      <div class="card__face--front"><img src=${card.imgUrl} alt="Character" class="front-face" > </div>
+      <div class="card__face--back"><img src="img/BackCard.png" alt="Memory Card" class="back-face"> </div>              
+
                 </div>`;
+                     
     });
-    root.innerHTML = html;
+    html+='</div>'
+    root.innerHTML = html;   
+     return;  
   }
+  throw new Error("no array of cards found");
+}catch(error){
+  console.error(error);
+  return [];
 }
-///--- card flip
-
-
-
-
-    
-
-
-
-function handleFlip(){
-    console.log("hey")
-   
 }
+
+
+function handleNewGame() {
+  let openingPage: HTMLElement = document.querySelector(".openingPage");
+  openingPage.style.display = "none";
+  
+}
+
+
+///--- card flip  
+function handleFlip(ev) {
+  const card:HTMLElement = document.querySelector(".card");
+  
+  console.log(card)
+ 
+
+}
+
+
+
 
 
 
 function checkMatches(cards) {}
 
-function handleNewGame() {
-  let openingPage: HTMLElement = document.querySelector(".openingPage");
-  openingPage.style.display = "none";
-}
 
-// html += ` <div class="flip-card" onclick="handleClickCard()">
-// <div class="flip-card-inner">
-//   <div class="flip-card-front" >
 
-//     <img src="img/BackCard.png"/>
-//   </div>
-//   <div class="flip-card-back">
-//   <img src=${card.imgUrl} alt="Avatar" >
-//   </div>
-// </div>
-// </div>`;

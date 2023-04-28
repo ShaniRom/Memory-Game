@@ -40,45 +40,52 @@ function appInit() {
 //needed to load on when the page opens
 function getCards() {
     return __awaiter(this, void 0, void 0, function () {
-        var data;
+        var data, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios.get("/new-game")];
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, axios.get("/new-game")];
                 case 1:
                     data = (_a.sent()).data;
-                    console.log(data);
                     renderGame(data);
-                    return [2 /*return*/];
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });
 }
 function renderGame(cards) {
     var root = document.querySelector("#root");
-    if (Array.isArray(cards)) {
-        var html_1 = "";
-        cards.forEach(function (card) {
-            html_1 += " <div class=\"memory-card\"  onclick='handleFlip()'  >\n                     <img src=" + card.imgUrl + " alt=\"Character\" class=\"front-face\" > \n                     <img src=\"img/BackCard.png\" alt=\"Memory Card\" class=\"back-face\"> \n                      \n                </div>";
-        });
-        root.innerHTML = html_1;
+    try {
+        if (Array.isArray(cards)) {
+            console.log(cards);
+            var html_1 = '<div class="gameBoard">';
+            cards.forEach(function (card) {
+                html_1 += " <div class=\"card\"  onclick=\"handleFlip(event)\" id=\"" + card.id + "\">\n      <div class=\"card__face--front\"><img src=" + card.imgUrl + " alt=\"Character\" class=\"front-face\" > </div>\n      <div class=\"card__face--back\"><img src=\"img/BackCard.png\" alt=\"Memory Card\" class=\"back-face\"> </div>              \n\n                </div>";
+            });
+            html_1 += '</div>';
+            root.innerHTML = html_1;
+            return;
+        }
+        throw new Error("no array of cards found");
+    }
+    catch (error) {
+        console.error(error);
+        return [];
     }
 }
-///--- card flip
-function handleFlip() {
-    console.log("hey");
-}
-function checkMatches(cards) { }
 function handleNewGame() {
     var openingPage = document.querySelector(".openingPage");
     openingPage.style.display = "none";
 }
-// html += ` <div class="flip-card" onclick="handleClickCard()">
-// <div class="flip-card-inner">
-//   <div class="flip-card-front" >
-//     <img src="img/BackCard.png"/>
-//   </div>
-//   <div class="flip-card-back">
-//   <img src=${card.imgUrl} alt="Avatar" >
-//   </div>
-// </div>
-// </div>`;
+///--- card flip  
+function handleFlip(ev) {
+    var card = document.querySelector(".card");
+    console.log(card);
+}
+function checkMatches(cards) { }

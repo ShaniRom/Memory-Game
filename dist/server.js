@@ -34,12 +34,16 @@ function doubleCards(stringArray) {
         cards = [...cards, card1, card2];
         //this adds them to the array cards[]
     });
-    console.log(cards);
     return cards;
 }
 app.get("/new-game", (req, res) => {
-    const shuffledDeck = doubleCards(cardUrls);
-    res.send(shuffleCards(shuffledDeck));
+    try {
+        const shuffledDeck = doubleCards(cardUrls);
+        res.send(shuffleCards(shuffledDeck));
+    }
+    catch (error) {
+        res.send({ error: error.message });
+    }
 });
 function shuffleCards(cards) {
     for (let i = cards.length - 1; i > 0; i--) {

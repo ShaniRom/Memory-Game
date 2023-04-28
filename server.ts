@@ -61,7 +61,7 @@ function doubleCards(stringArray:Array<string>){
     //this adds them to the array cards[]
 
   });
-  console.log(cards)
+  
   return cards;
 }
 
@@ -71,9 +71,13 @@ function doubleCards(stringArray:Array<string>){
 
 
 app.get("/new-game", (req, res) => {
- 
+ try{
   const shuffledDeck= doubleCards(cardUrls)
   res.send(shuffleCards(shuffledDeck));
+ }catch(error){
+  res.send({ error: error.message });
+ }
+  
   
 });
 
