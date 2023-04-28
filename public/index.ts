@@ -18,20 +18,25 @@ console.error(error)
 
 
 function renderGame(cards) {
-  const root = document.querySelector("#root");
+  const root = document.getElementById("root");
   try{
   if (Array.isArray(cards)) {
     console.log(cards)
-    let html = '<div class="gameBoard">'
-    cards.forEach((card) => {
-      html += ` <div class="card"  onclick="handleFlip(event)" id="${card.id}">
-      <div class="card__face--front"><img src=${card.imgUrl} alt="Character" class="front-face" > </div>
-      <div class="card__face--back"><img src="img/BackCard.png" alt="Memory Card" class="back-face"> </div>              
+    let html=""
+       
+    cards.forEach((card:any) => {
+      console.log(card)
+      html += ` <div class="card"   id="${card.id}" onclick='handleFlip()'>
+      <div class="card__face--front" ><img src=${card.imgUrl} alt="Character" class="front-face" /> </div>
+                 
 
-                </div>`;
+       </div>`;
                      
     });
-    html+='</div>'
+    
+  
+  
+    console.log(root)
     root.innerHTML = html;   
      return;  
   }
@@ -43,6 +48,14 @@ function renderGame(cards) {
 }
 
 
+
+function handleFlip(id){
+  let card=document.getElementsByClassName('card')
+
+console.log(card)
+}
+
+// <div class="card__face--back"><img src="img/BackCard.png" alt="Memory Card" class="back-face"> </div>   
 function handleNewGame() {
   let openingPage: HTMLElement = document.querySelector(".openingPage");
   openingPage.style.display = "none";
@@ -50,14 +63,13 @@ function handleNewGame() {
 }
 
 
+
 ///--- card flip  
-function handleFlip(ev) {
-  const card:HTMLElement = document.querySelector(".card");
-  
-  console.log(card)
+// function handleFlip(ev) {
+
  
 
-}
+// }
 
 
 

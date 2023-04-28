@@ -4,13 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const uid_1 = require("uid");
 const app = express_1.default();
 const port = process.env.PORT || 3000;
 app.use(express_1.default.json());
 app.use(express_1.default.static("public"));
-function uid() {
-    return Date.now().toString(36) + Math.random().toString(36);
-}
+// function uid() {
+//   return Date.now().toString(36) + Math.random().toString(36);
+// }
 const cardUrls = [
     "img/HarryCard.gif",
     "img/HermioneCard.gif",
@@ -24,12 +25,12 @@ const cardUrls = [
 function doubleCards(stringArray) {
     let cards = [];
     stringArray.forEach((url) => {
-        const tempCard = { imgUrl: url, pairId: uid() }; //we built an object
+        const tempCard = { imgUrl: url, pairId: uid_1.uid() }; //we built an object
         const card1 = Object.assign({}, tempCard); //deep copy (copy by value)
         const card2 = Object.assign({}, tempCard); //deep copy (copy by value)
         //copies the same tempcard twice same url and pair id 
-        card1.id = uid();
-        card2.id = uid();
+        card1.id = uid_1.uid();
+        card2.id = uid_1.uid();
         //each card adds to themselves their own uid
         cards = [...cards, card1, card2];
         //this adds them to the array cards[]

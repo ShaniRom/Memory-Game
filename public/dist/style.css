@@ -49,7 +49,7 @@ body {
   box-shadow: 5px 1px 40px 30px rgba(116, 79, 37, 0.849);
 }
 
-.gameBoard {
+#root {
   justify-content: center;
   display: grid;
   grid-template-columns: repeat(4, 250px);
@@ -59,7 +59,7 @@ body {
   perspective: 1000px;
   /* perspective gives 3D effect */
 }
-.gameBoard .card img {
+#root .card img {
   width: 180px;
   height: 180px;
 }

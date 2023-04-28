@@ -60,15 +60,16 @@ function getCards() {
     });
 }
 function renderGame(cards) {
-    var root = document.querySelector("#root");
+    var root = document.getElementById("root");
     try {
         if (Array.isArray(cards)) {
             console.log(cards);
-            var html_1 = '<div class="gameBoard">';
+            var html_1 = "";
             cards.forEach(function (card) {
-                html_1 += " <div class=\"card\"  onclick=\"handleFlip(event)\" id=\"" + card.id + "\">\n      <div class=\"card__face--front\"><img src=" + card.imgUrl + " alt=\"Character\" class=\"front-face\" > </div>\n      <div class=\"card__face--back\"><img src=\"img/BackCard.png\" alt=\"Memory Card\" class=\"back-face\"> </div>              \n\n                </div>";
+                console.log(card);
+                html_1 += " <div class=\"card\"   id=\"" + card.id + "\" onclick='handleFlip()'>\n      <div class=\"card__face--front\" ><img src=" + card.imgUrl + " alt=\"Character\" class=\"front-face\" /> </div>\n                 \n\n       </div>";
             });
-            html_1 += '</div>';
+            console.log(root);
             root.innerHTML = html_1;
             return;
         }
@@ -79,13 +80,16 @@ function renderGame(cards) {
         return [];
     }
 }
+function handleFlip(id) {
+    var card = document.getElementsByClassName('card');
+    console.log(card);
+}
+// <div class="card__face--back"><img src="img/BackCard.png" alt="Memory Card" class="back-face"> </div>   
 function handleNewGame() {
     var openingPage = document.querySelector(".openingPage");
     openingPage.style.display = "none";
 }
 ///--- card flip  
-function handleFlip(ev) {
-    var card = document.querySelector(".card");
-    console.log(card);
-}
+// function handleFlip(ev) {
+// }
 function checkMatches(cards) { }

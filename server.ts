@@ -1,4 +1,5 @@
 import express from 'express';
+import { uid } from 'uid';
 const app = express();
 const port = process.env.PORT || 3000;
 app.use(express.json());
@@ -28,13 +29,13 @@ app.use(express.static("public"));
 interface Card {
   imgUrl: string;
   pairId: string;
-  id?: any;
+  id?: string;
   
 }
 
-function uid() {
-  return Date.now().toString(36) + Math.random().toString(36);
-}
+// function uid() {
+//   return Date.now().toString(36) + Math.random().toString(36);
+// }
 
 const cardUrls=[
   "img/HarryCard.gif",
@@ -74,6 +75,7 @@ app.get("/new-game", (req, res) => {
  try{
   const shuffledDeck= doubleCards(cardUrls)
   res.send(shuffleCards(shuffledDeck));
+
  }catch(error){
   res.send({ error: error.message });
  }
