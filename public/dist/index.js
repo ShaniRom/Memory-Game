@@ -66,10 +66,8 @@ function renderGame(cards) {
             console.log(cards);
             var html_1 = "";
             cards.forEach(function (card) {
-                console.log(card);
-                html_1 += " <div class=\"card\"   id=\"" + card.id + "\" onclick='handleFlip()'>\n      <div class=\"card__face--front\" ><img src=" + card.imgUrl + " alt=\"Character\" class=\"front-face\" /> </div>\n                 \n\n       </div>";
+                html_1 += " <div class=\"card\"   id=\"" + card.id + "}\" onclick='handleFlip(" + card.id + ")'>\n      <div class=\"card__face--front\" ><img src=" + card.imgUrl + " alt=\"Character\" class=\"front-face\" /> </div>\n                 \n\n       </div>";
             });
-            console.log(root);
             root.innerHTML = html_1;
             return;
         }
@@ -81,15 +79,14 @@ function renderGame(cards) {
     }
 }
 function handleFlip(id) {
-    var card = document.getElementsByClassName('card');
-    console.log(card);
+    console.log(id);
 }
-// <div class="card__face--back"><img src="img/BackCard.png" alt="Memory Card" class="back-face"> </div>   
+// <div class="card__face--back"><img src="img/BackCard.png" alt="Memory Card" class="back-face"> </div>
 function handleNewGame() {
     var openingPage = document.querySelector(".openingPage");
     openingPage.style.display = "none";
 }
-///--- card flip  
+///--- card flip
 // function handleFlip(ev) {
 // }
-function checkMatches(cards) { }
+// function checkMatches(cards) {}
