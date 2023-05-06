@@ -21,7 +21,7 @@ function renderGame(cards) {
     if (Array.isArray(cards)) {
       console.log(cards);
       let html = "";
-
+      //use index as id maybe
       cards.forEach((card: any) => {
         
         html += ` <div class="card"   id="${card.id}}" onclick='handleFlip(${card.id})'>

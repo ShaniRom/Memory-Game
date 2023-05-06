@@ -65,6 +65,7 @@ function renderGame(cards) {
         if (Array.isArray(cards)) {
             console.log(cards);
             var html_1 = "";
+            //use index as id maybe
             cards.forEach(function (card) {
                 html_1 += " <div class=\"card\"   id=\"" + card.id + "}\" onclick='handleFlip(" + card.id + ")'>\n      <div class=\"card__face--front\" ><img src=" + card.imgUrl + " alt=\"Character\" class=\"front-face\" /> </div>\n                 \n\n       </div>";
             });
