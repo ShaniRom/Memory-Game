@@ -1,4 +1,3 @@
-
 function appInit() {
   getCards();
 }
@@ -15,6 +14,15 @@ async function getCards() {
   }
 }
 
+function uid() {
+  // const uuid = Date.now().toString(36) + Math.random().toString(36);
+   const min = Math.ceil(3123);
+   const max = Math.floor(4321);
+  const uuid= Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+
+  return uuid;
+}
+
 function renderGame(cards) {
   const root = document.getElementById("root");
   try {
@@ -23,8 +31,7 @@ function renderGame(cards) {
       let html = "";
       //use index as id maybe
       cards.forEach((card: any) => {
-        
-        html += ` <div class="card"   id="${card.id}}" onclick='handleFlip(${card.id})'>
+        html += ` <div class="card"   id="${card.pairId}}" onclick='handleFlip(${uid()})'>
       <div class="card__face--front" ><img src=${card.imgUrl} alt="Character" class="front-face" /> </div>
                  
 
@@ -41,9 +48,8 @@ function renderGame(cards) {
   }
 }
 
-function handleFlip(id:any) {
+function handleFlip(id: any) {
   console.log(id);
- 
 }
 
 // <div class="card__face--back"><img src="img/BackCard.png" alt="Memory Card" class="back-face"> </div>

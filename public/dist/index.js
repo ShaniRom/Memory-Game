@@ -59,6 +59,13 @@ function getCards() {
         });
     });
 }
+function uid() {
+    // const uuid = Date.now().toString(36) + Math.random().toString(36);
+    var min = Math.ceil(3123);
+    var max = Math.floor(4321);
+    var uuid = Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+    return uuid;
+}
 function renderGame(cards) {
     var root = document.getElementById("root");
     try {
@@ -67,7 +74,7 @@ function renderGame(cards) {
             var html_1 = "";
             //use index as id maybe
             cards.forEach(function (card) {
-                html_1 += " <div class=\"card\"   id=\"" + card.id + "}\" onclick='handleFlip(" + card.id + ")'>\n      <div class=\"card__face--front\" ><img src=" + card.imgUrl + " alt=\"Character\" class=\"front-face\" /> </div>\n                 \n\n       </div>";
+                html_1 += " <div class=\"card\"   id=\"" + card.pairId + "}\" onclick='handleFlip(" + uid() + ")'>\n      <div class=\"card__face--front\" ><img src=" + card.imgUrl + " alt=\"Character\" class=\"front-face\" /> </div>\n                 \n\n       </div>";
             });
             root.innerHTML = html_1;
             return;

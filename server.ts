@@ -1,28 +1,32 @@
 import express from 'express';
-import { uid } from 'uid';
+
 const app = express();
 const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static("public"));
 
 
+
+
+
+
 const cards=[
-    {name:"Harry Potter",pairId:"1",imgUrl:"img/HarryCard.gif",id:uid()},
-    {name:"Harry Potter",pairId:"1",imgUrl:"img/HarryCard.gif",id:uid()},
-    {name:"Hermione Granger",pairId:"2",imgUrl:"img/HermioneCard.gif",id:uid()},
-    {name:"Hermione Granger",pairId:"2",imgUrl:"img/HermioneCard.gif",id:uid()},
-    {name:"Ron Weasley",pairId:"3",imgUrl:"/img/RonCard.gif",id:uid()},
-    {name:"Ron Weasley",pairId:"3",imgUrl:"/img/RonCard.gif",id:uid()},
-    {name:"Severus Snape",pairId:"4",imgUrl:"/img/SnapeCard.gif",id:uid()},
-    {name:"Severus Snape",pairId:"4",imgUrl:"/img/SnapeCard.gif",id:uid()},
-    {name:"Albus Dumbledore",pairId:"5",imgUrl:"/img/DumbledoreCard.gif",id:uid()},
-    {name:"Albus Dumbledore",pairId:"5",imgUrl:"/img/DumbledoreCard.gif",id:uid()},
-    {name:"Sirius Black",pairId:"6",imgUrl:"/img/SiriusCard.gif",id:uid()},
-    {name:"Sirius Black",pairId:"6",imgUrl:"/img/SiriusCard.gif",id:uid()},
-    {name:"Remus Lupin",pairId:"7",imgUrl:"/img/RemusCard.gif",id:uid()},
-    {name:"Remus Lupin",pairId:"7",imgUrl:"/img/RemusCard.gif",id:uid()},
-    {name:"Draco Malfoy",pairId:"8",imgUrl:"/img/DracoCard.gif",id:uid()},
-    {name:"Draco Malfoy",pairId:"8",imgUrl:"/img/DracoCard.gif",id:uid()}
+    {name:"Harry Potter",pairId:"1",imgUrl:"img/HarryCard.gif"},
+    {name:"Harry Potter",pairId:"1",imgUrl:"img/HarryCard.gif"},
+    {name:"Hermione Granger",pairId:"2",imgUrl:"img/HermioneCard.gif"},
+    {name:"Hermione Granger",pairId:"2",imgUrl:"img/HermioneCard.gif"},
+    {name:"Ron Weasley",pairId:"3",imgUrl:"/img/RonCard.gif"},
+    {name:"Ron Weasley",pairId:"3",imgUrl:"/img/RonCard.gif"},
+    {name:"Severus Snape",pairId:"4",imgUrl:"/img/SnapeCard.gif"},
+    {name:"Severus Snape",pairId:"4",imgUrl:"/img/SnapeCard.gif"},
+    {name:"Albus Dumbledore",pairId:"5",imgUrl:"/img/DumbledoreCard.gif"},
+    {name:"Albus Dumbledore",pairId:"5",imgUrl:"/img/DumbledoreCard.gif"},
+    {name:"Sirius Black",pairId:"6",imgUrl:"/img/SiriusCard.gif"},
+    {name:"Sirius Black",pairId:"6",imgUrl:"/img/SiriusCard.gif"},
+    {name:"Remus Lupin",pairId:"7",imgUrl:"/img/RemusCard.gif"},
+    {name:"Remus Lupin",pairId:"7",imgUrl:"/img/RemusCard.gif"},
+    {name:"Draco Malfoy",pairId:"8",imgUrl:"/img/DracoCard.gif"},
+    {name:"Draco Malfoy",pairId:"8",imgUrl:"/img/DracoCard.gif"}
    
 ];
 
@@ -33,9 +37,6 @@ interface Card {
   
 }
 
-// function uid() {
-//   return Date.now().toString(36) + Math.random().toString(36);
-// }
 
 // const cardUrls=[
 //   "img/HarryCard.gif",
