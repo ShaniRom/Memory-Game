@@ -1,8 +1,7 @@
+//needed to load on when the page opens
 function appInit() {
   getCards();
 }
-
-//needed to load on when the page opens
 
 async function getCards() {
   try {
@@ -14,13 +13,9 @@ async function getCards() {
   }
 }
 
-function uid() {
-  // const uuid = Date.now().toString(36) + Math.random().toString(36);
-   const min = Math.ceil(3123);
-   const max = Math.floor(4321);
-  const uuid= Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
-
-  return uuid;
+function handleNewGame() {
+  let openingPage: HTMLElement = document.querySelector(".openingPage");
+  openingPage.style.display = "none";
 }
 
 function renderGame(cards) {
@@ -29,12 +24,15 @@ function renderGame(cards) {
     if (Array.isArray(cards)) {
       console.log(cards);
       let html = "";
-      //use index as id maybe
       cards.forEach((card: any) => {
-        html += ` <div class="card"   id="${card.pairId}}" onclick='handleFlip(${uid()})'>
-      <div class="card__face--front" ><img src=${card.imgUrl} alt="Character" class="front-face" /> </div>
-                 
-
+        html += ` <div class="card" onclick='handleFlip(event)' id="${card.id}"  pairId="${card.pairId}" >
+        
+      <div class="card__face-back">
+      </div>
+      <div class="card__face-front">
+      <img src="${card.imgUrl}">
+      </div> 
+      
        </div>`;
       });
 
@@ -47,20 +45,15 @@ function renderGame(cards) {
     return [];
   }
 }
+let hasFlippedCard = false;
+let firstCard, secondCard; 
 
-function handleFlip(id: any) {
-  console.log(id);
+async function handleFlip(ev) {
+  // const {chosenCard} = await axios.get(`/search-for-card?id=${id}`);
+
+
+console.log(ev.target.id)
+  
 }
 
-// <div class="card__face--back"><img src="img/BackCard.png" alt="Memory Card" class="back-face"> </div>
-function handleNewGame() {
-  let openingPage: HTMLElement = document.querySelector(".openingPage");
-  openingPage.style.display = "none";
-}
-
-///--- card flip
-// function handleFlip(ev) {
-
-// }
-
-// function checkMatches(cards) {}
+function checkMatches(firstCard, secondCard) {}

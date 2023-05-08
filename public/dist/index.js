@@ -34,10 +34,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+//needed to load on when the page opens
 function appInit() {
     getCards();
 }
-//needed to load on when the page opens
 function getCards() {
     return __awaiter(this, void 0, void 0, function () {
         var data, error_1;
@@ -59,12 +59,9 @@ function getCards() {
         });
     });
 }
-function uid() {
-    // const uuid = Date.now().toString(36) + Math.random().toString(36);
-    var min = Math.ceil(3123);
-    var max = Math.floor(4321);
-    var uuid = Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
-    return uuid;
+function handleNewGame() {
+    var openingPage = document.querySelector(".openingPage");
+    openingPage.style.display = "none";
 }
 function renderGame(cards) {
     var root = document.getElementById("root");
@@ -72,9 +69,8 @@ function renderGame(cards) {
         if (Array.isArray(cards)) {
             console.log(cards);
             var html_1 = "";
-            //use index as id maybe
             cards.forEach(function (card) {
-                html_1 += " <div class=\"card\"   id=\"" + card.pairId + "}\" onclick='handleFlip(" + uid() + ")'>\n      <div class=\"card__face--front\" ><img src=" + card.imgUrl + " alt=\"Character\" class=\"front-face\" /> </div>\n                 \n\n       </div>";
+                html_1 += " <div class=\"card\" onclick='handleFlip(event)' id=\"" + card.id + "\"  pairId=\"" + card.pairId + "\" >\n        \n      <div class=\"card__face-back\">\n      </div>\n      <div class=\"card__face-front\">\n      <img src=\"" + card.imgUrl + "\">\n      </div> \n      \n       </div>";
             });
             root.innerHTML = html_1;
             return;
@@ -86,15 +82,15 @@ function renderGame(cards) {
         return [];
     }
 }
-function handleFlip(id) {
-    console.log(id);
+var hasFlippedCard = false;
+var firstCard, secondCard;
+function handleFlip(ev) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            // const {chosenCard} = await axios.get(`/search-for-card?id=${id}`);
+            console.log(ev.target.id);
+            return [2 /*return*/];
+        });
+    });
 }
-// <div class="card__face--back"><img src="img/BackCard.png" alt="Memory Card" class="back-face"> </div>
-function handleNewGame() {
-    var openingPage = document.querySelector(".openingPage");
-    openingPage.style.display = "none";
-}
-///--- card flip
-// function handleFlip(ev) {
-// }
-// function checkMatches(cards) {}
+function checkMatches(firstCard, secondCard) { }
