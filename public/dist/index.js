@@ -70,7 +70,7 @@ function renderGame(cards) {
             console.log(cards);
             var html_1 = "";
             cards.forEach(function (card) {
-                html_1 += " <div class=\"card\" onclick='handleFlip(event)' id=\"" + card.id + "\"  pairId=\"" + card.pairId + "\" >\n        \n      <div class=\"card__face-back\">\n      </div>\n      <div class=\"card__face-front\">\n      <img src=\"" + card.imgUrl + "\">\n      </div> \n      \n       </div>";
+                html_1 += " <div class=\"card\" onclick='handleFlip(event)' id=\"" + card.id + "\"  data-pair-id=\"" + card.pairId + "\" >\n        \n      <div class=\"card_-front\">\n      \n      </div>\n      <div class=\"card-back\" >\n    <img src=\"" + card.imgUrl + "\"/>\n      </div> \n      \n       </div>";
             });
             root.innerHTML = html_1;
             return;
@@ -82,13 +82,48 @@ function renderGame(cards) {
         return [];
     }
 }
-var hasFlippedCard = false;
+var flippedCards = 0;
+var totalFlips = 0;
 var firstCard, secondCard;
+// <img src=/img/BackCard.png>
 function handleFlip(ev) {
     return __awaiter(this, void 0, void 0, function () {
+        var chosenCard, bothFlippedCards;
         return __generator(this, function (_a) {
-            // const {chosenCard} = await axios.get(`/search-for-card?id=${id}`);
-            console.log(ev.target.id);
+            chosenCard = ev.target.parentNode.parentNode;
+            // console.log(chosenCard)
+            if (flippedCards < 2) {
+                chosenCard.classList.add("flipped");
+                flippedCards++;
+                console.log(chosenCard);
+            }
+            else {
+                alert("cant click more than two");
+                chosenCard.classList.remove("flipped");
+                flippedCards = 0;
+            }
+            if (flippedCards === 2) {
+                bothFlippedCards = document.querySelectorAll(".flipped");
+                // console.log(chosenCard.dataset.pairId)
+                firstCard = bothFlippedCards[0];
+                secondCard = bothFlippedCards[1];
+                console.log(firstCard);
+                console.log(secondCard);
+                if (firstCard.dataset.pairId == secondCard.dataset.pairId) {
+                    alert("haaa tis a match");
+                    firstCard.style.visibility = "hidden";
+                    secondCard.style.visibility = "hidden";
+                    flippedCards = 0;
+                    firstCard.classList.remove("flipped");
+                    secondCard.classList.remove("flipped");
+                }
+                else {
+                    alert("not a match stoopid");
+                    flippedCards = 0;
+                    firstCard.classList.remove("flipped");
+                    secondCard.classList.remove("flipped");
+                }
+            }
             return [2 /*return*/];
         });
     });

@@ -25,12 +25,13 @@ function renderGame(cards) {
       console.log(cards);
       let html = "";
       cards.forEach((card: any) => {
-        html += ` <div class="card" onclick='handleFlip(event)' id="${card.id}"  pairId="${card.pairId}" >
+        html += ` <div class="card" onclick='handleFlip(event)' id="${card.id}"  data-pair-id="${card.pairId}" >
         
-      <div class="card__face-back">
+      <div class="card_-front">
+      
       </div>
-      <div class="card__face-front">
-      <img src="${card.imgUrl}">
+      <div class="card-back" >
+    <img src="${card.imgUrl}"/>
       </div> 
       
        </div>`;
@@ -45,15 +46,48 @@ function renderGame(cards) {
     return [];
   }
 }
-let hasFlippedCard = false;
-let firstCard, secondCard; 
+let flippedCards = 0;
+let totalFlips = 0;
+let firstCard, secondCard;
+// <img src=/img/BackCard.png>
 
 async function handleFlip(ev) {
-  // const {chosenCard} = await axios.get(`/search-for-card?id=${id}`);
-
-
-console.log(ev.target.id)
   
+  let chosenCard = ev.target.parentNode.parentNode;
+  // console.log(chosenCard)
+  
+  if (flippedCards < 2) {
+    chosenCard.classList.add("flipped");
+    flippedCards++;
+    console.log(chosenCard) 
+  } else {
+    alert("cant click more than two");
+    chosenCard.classList.remove("flipped");
+    flippedCards=0
+  }
+  if (flippedCards === 2) {
+    const bothFlippedCards = document.querySelectorAll(".flipped");
+
+    // console.log(chosenCard.dataset.pairId)
+    firstCard = bothFlippedCards[0];
+    secondCard = bothFlippedCards[1];
+    console.log(firstCard);
+    console.log(secondCard);
+    if (firstCard.dataset.pairId == secondCard.dataset.pairId) {
+      alert("haaa tis a match");
+      firstCard.style.visibility = "hidden";
+      secondCard.style.visibility = "hidden";
+      flippedCards=0
+      firstCard.classList.remove("flipped");
+      secondCard.classList.remove("flipped");
+
+    }else{
+      alert("not a match stoopid")
+      flippedCards=0
+      firstCard.classList.remove("flipped");
+      secondCard.classList.remove("flipped");
+    }
+  }
 }
 
 function checkMatches(firstCard, secondCard) {}
